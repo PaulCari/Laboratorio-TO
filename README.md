@@ -9,15 +9,4 @@ Se desarrollará dos implementaciones:
 
 ---
 
-## 📐 Función de prueba
-La función utilizada como ejemplo fue:
 
-\[
-f(x) = 2x^2 + 3x + \tfrac{1}{2}
-\]
-
-con el intervalo:
-- `a = 2`
-- `b = 20`
-
-El área aproximada corresponde al **primer cuadrante**, ya que en ese rango \( f(x) > 0 \).
