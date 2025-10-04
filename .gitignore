@@ -1,0 +1,14 @@
+# Archivos compilados de C++
+*.o
+*.out
+a.exe
+
+# Archivos compilados de Java
+*.class
+
+# Archivos compilados de Go
+*.exe
+
+# Directorios de IDEs
+.vscode/
+.idea/
