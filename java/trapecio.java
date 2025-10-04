@@ -1,35 +1,39 @@
 
 import java.util.Scanner;
 
-public class trapecio{
+public class trapecio implements Runnable{
 
-    private static double f(double x) {
+    private final int startN;
+    private final int endN;
+    private final int totalTrapezoids;
+    private final double a;
+    private final double deltaX;
+    private double partialSum;
+
+    public trapecio(int startN, int endN, int totalTrapecios, double a, double deltaX) {
+        this.startN = startN;
+        this.endN = endN;
+        this.totalTrapezoids = totalTrapecios;
+        this.a = a;
+        this.deltaX = deltaX;
+        this.partialSum = 0.0;
+    }
+
+    private double f(double x) {
         return 2 * x * x + 3 * x + 0.5;
     }
 
-    public static void main(String[] args) {
-        double a = 2.0;
-        double b = 20.0;
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Introduce el numero de trapecios a utilizar (N): ");
-        int n = scanner.nextInt();
-        scanner.close();
-
-        if (n <= 0) {
-            System.out.println("El numero de trapecios debe ser un entero positivo.");
-            return;
+    @Override
+    public void run() {
+        for (int i = startN; i <= endN; i++) {
+            if (i > 0 && i < totalTrapezoids) {
+                double xi = a + i * deltaX;
+                partialSum += 2 * f(xi);
+            }
         }
+    }
 
-        double deltaX = (b - a) / n;
-        double sum = f(a) + f(b);
-
-        for (int i = 1; i < n; i++) {
-            double xi = a + i * deltaX;
-            sum += 2 * f(xi);
-        }
-
-        double finalArea = (deltaX / 2.0) * sum;
-        System.out.printf("\n Para N = %d trapecios, el area aproximada es: %.10f%n", n, finalArea);
+    public double getPartialSum() {
+        return partialSum;
     }
 }
